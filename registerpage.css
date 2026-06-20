@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    padding: 20px;
+    background-image: url("C:\\Users\\atcha\\Downloads\\ChatGPT Image Mar 2, 2026, 11_39_07 AM.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.register-card {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    max-width: 550px;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #fda085;
+    outline: none;
+    box-shadow: 0 0 5px rgba(253,160,133,0.5);
+}
+
+textarea {
+    resize: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #f76b1c;
+    color: white;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    background: #ff512f;
+}
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .register-card {
+        padding: 25px;
+    }
+}

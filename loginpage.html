@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Surplus2Serve</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            background-image: url('bglogin.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+        .login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(211, 84, 0, 0.25);
+            z-index: 1;
+        }
+        .login-container {
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid #d35400;
+            backdrop-filter: blur(10px);
+        }
+        .login-card h2 {
+            color: #d35400;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #8b5a2b;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        .input-group label {
+            display: block;
+            color: #8b5a2b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #daa520;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background-color: #fffef5;
+            color: #333;
+        }
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #d35400;
+            box-shadow: 0 0 0 0.3rem rgba(211, 84, 0, 0.15);
+            background-color: #ffffff;
+        }
+        .role-selection {
+            margin-bottom: 1.5rem;
+        }
+        .error-message {
+            color: #c44600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background-color: #fed7d7;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid #d35400;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #d35400;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+        .login-btn:hover {
+            background-color: #c44600;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(211, 84, 0, 0.4);
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #8b5a2b;
+            font-size: 0.95rem;
+        }
+        .register-link a {
+            color: #d35400;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+            color: #c44600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #d35400;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .back-link:hover {
+            transform: translateX(-3px);
+            color: #c44600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <h2><i class="fas fa-sign-in-alt me-2" style="color: #d35400;"></i>User Login</h2>
+            <p class="subtitle">Log in to your Surplus2Serve account</p>
+
+            <form id="loginForm">
+
+                <!-- Role Selection -->
+                <div class="role-selection">
+                    <label><i class="fas fa-user me-2"></i>Select Your Role</label>
+                    <select id="role" required>
+                        <option value="">-- Choose a role --</option>
+                        <option value="donor">Donor / Business</option>
+                        <option value="ngo">NGO / Organization</option>
+                    </select>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group">
+                    <label><i class="fas fa-envelope me-2"></i>Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+                    <label><i class="fas fa-lock me-2"></i>Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Error Message -->
+                <p id="errorMessage" class="error-message"></p>
+
+                <!-- Login Button -->
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+
+                <!-- Register Link -->
+                <p class="register-link">
+                    Don't have an account?
+                    <a href="registerpage.html">Register here</a>
+                </p>
+
+                <!-- Admin Link -->
+                <p class="register-link" style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                    Are you an admin?
+                    <a href="adminlogin.html">Admin Login</a>
+                </p>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="notifications.js"></script>
+    <script src="loginpage.js"></script>
+</body>
+</html>

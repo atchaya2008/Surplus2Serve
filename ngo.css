@@ -1,0 +1,43 @@
+/* General */
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Card design */
+.card {
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Titles */
+h3 {
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+}
+
+/* Forms */
+form input,
+form select,
+form textarea {
+    border-radius: 8px !important;
+}
+
+/* Accepted highlight */
+.accepted-card {
+    border: 2px solid green;
+}

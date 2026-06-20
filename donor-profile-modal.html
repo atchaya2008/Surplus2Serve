@@ -1,0 +1,145 @@
+<!-- ============================================
+     DONOR PROFILE MODAL
+     Collect donor contact details and location
+     ============================================ -->
+
+<div id="donorProfileModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header">
+            <h5>Complete Your Profile</h5>
+            <button type="button" class="modal-close" onclick="closeDonorProfileModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p class="text-muted">Please provide your contact details so NGOs can reach you.</p>
+            
+            <form id="donorProfileForm">
+                <div class="form-group mb-3">
+                    <label for="donorPhone" class="form-label">Phone Number *</label>
+                    <input type="tel" class="form-control" id="donorPhone" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="donorAddress" class="form-label">Full Address *</label>
+                    <textarea class="form-control" id="donorAddress" rows="3" placeholder="Enter your business address" required></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="donorCity" class="form-label">City *</label>
+                    <input type="text" class="form-control" id="donorCity" placeholder="Enter city" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="donorPincode" class="form-label">Postal Code *</label>
+                    <input type="text" class="form-control" id="donorPincode" placeholder="Enter postal code" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="donorLocation" class="form-label">Location (GPS/Coordinates) *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="donorLocation" placeholder="Click get location or enter coordinates" required>
+                        <button type="button" class="btn btn-outline-primary" onclick="getCurrentLocation()">
+                            <i class="fas fa-map-marker-alt"></i> Get Location
+                        </button>
+                    </div>
+                </div>
+
+                <div id="profileError" class="alert alert-danger" style="display:none;"></div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="fas fa-save me-2"></i>Save Profile
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// Handle donor profile form submission
+const donorProfileForm = document.getElementById('donorProfileForm');
+if (donorProfileForm) {
+    donorProfileForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const phone = document.getElementById('donorPhone').value.trim();
+        const address = document.getElementById('donorAddress').value.trim();
+        const city = document.getElementById('donorCity').value.trim();
+        const pincode = document.getElementById('donorPincode').value.trim();
+        const location = document.getElementById('donorLocation').value.trim();
+
+        if(!phone || !address || !city || !pincode || !location) {
+            showDonorProfileError('Please fill in all fields');
+            return;
+        }
+
+        // Validate phone number
+        if(!/^\d{10}$/.test(phone.replace(/\D/g, ''))) {
+            showDonorProfileError('Please enter a valid 10-digit phone number');
+            return;
+        }
+
+        // Save donor profile
+        const donorProfile = {
+            phone: phone,
+            address: address,
+            city: city,
+            pincode: pincode,
+            location: location,
+            email: localStorage.getItem('userEmail') || 'unknown'
+        };
+
+        localStorage.setItem('donorProfile', JSON.stringify(donorProfile));
+        
+        // Close modal and show success
+        closeDonorProfileModal();
+        notificationManager.showModal(
+            '✅ Profile Complete',
+            'Your profile has been saved. NGOs can now see your contact details when you post surplus food.',
+            'success'
+        );
+    });
+}
+
+function showDonorProfileError(message) {
+    const errorDiv = document.getElementById('profileError');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+function closeDonorProfileModal() {
+    const modal = document.getElementById('donorProfileModal');
+    if(modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('active');
+    }
+}
+
+function showDonorProfileModal() {
+    const modal = document.getElementById('donorProfileModal');
+    if(modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+    }
+}
+
+// Get current location using browser geolocation
+function getCurrentLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude.toFixed(6);
+            const lon = position.coords.longitude.toFixed(6);
+            document.getElementById('donorLocation').value = lat + ', ' + lon;
+            
+            notificationManager.showModal(
+                '📍 Location Captured',
+                `Your coordinates: ${lat}, ${lon}`,
+                'success'
+            );
+        }, function(error) {
+            showDonorProfileError('Could not get your location. Please enter coordinates manually.');
+            console.error('Geolocation error:', error);
+        });
+    } else {
+        showDonorProfileError('Geolocation is not supported by your browser');
+    }
+}
+</script>

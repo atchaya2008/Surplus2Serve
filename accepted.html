@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Accepted Foods - Surplus2Serve</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .ngo-navbar {
+            background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+            box-shadow: var(--shadow-md);
+            padding: 1rem 0;
+        }
+        .ngo-navbar .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .ngo-navbar .btn-back {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .ngo-navbar .btn-back:hover {
+            background-color: white;
+            color: var(--success-color);
+        }
+        .ngo-content {
+            background-color: var(--light-bg);
+            min-height: calc(100vh - 70px);
+            padding: 2rem 0;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        .section-header h4 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        .empty-state i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.4;
+            color: var(--success-color);
+        }
+        .empty-state h5 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .empty-state p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="ngo-navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+        <span class="navbar-brand"><i class="fas fa-check-circle me-2" style="color: var(--success-light);"></i>Accepted Foods</span>
+        <a href="ngo.html" class="btn-back">
+            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+        </a>
+    </div>
+</nav>
+
+<div class="ngo-content">
+    <div class="container">
+        <div class="section-header">
+            <i class="fas fa-check-circle" style="color: var(--success-color); font-size: 1.3rem;"></i>
+            <h4>✅ My Accepted Donations</h4>
+        </div>
+        <div class="row" id="acceptedList">
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="fas fa-box"></i>
+                    <h5>No Accepted Foods Yet</h5>
+                    <p>You haven't accepted any foods yet. Go back to the dashboard to browse available donations!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="notifications.js"></script>
+<script src="ngo.js"></script>
+</body>
+</html>
