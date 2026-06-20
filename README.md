@@ -20,6 +20,9 @@
 > Bridging the gap between surplus food and hungry communities through a seamless digital platform.
 
 ---
+## Live Demo
+
+[Visit Surplus2Serve Website](https://surplus2serve.vercel.app/)
 
 ## ✨ Features
 
