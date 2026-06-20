@@ -5,30 +5,6 @@ const successMessage = document.getElementById("successMessage");
 // 🔐 Admin Credentials (Array of multiple admins)
 const ADMIN_CREDENTIALS_LIST = [
     {
-        email: "717825i204@kce.ac.in",
-        password: "Archana@204",
-        secret: "SURPLUS2SERVE",
-        name: "Archana"
-    },
-    {
-        email: "717825i207@kce.ac.in",
-        password: "Atchaya@207",
-        secret: "SURPLUS2SERVE",
-        name: "Atchaya"
-    },
-    {
-        email: "717825i215@kce.ac.in",
-        password: "Inbajothi@215",
-        secret: "SURPLUS2SERVE",
-        name: "Inbajothi"
-    },
-    {
-        email: "717825i236@kce.ac.in",
-        password: "Nandhana@236",
-        secret: "SURPLUS2SERVE",
-        name: "Nandhana"
-    },
-    {
         email: "admin@surplus2serve.com",
         password: "Admin@2024",
         secret: "SURPLUS2SERVE",
